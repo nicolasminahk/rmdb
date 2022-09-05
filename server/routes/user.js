@@ -1,10 +1,22 @@
-const router = require("express");
+const express = require("express");
+const routerUser = express.Router();
 const userController = require("../controllers/user.controller");
+const validarToken = require("../middlewares/authToken");
 
-router.get("/", userController.getUsers);
-router.post("/:id", userController.createUser);
+const app = express();
 
-router.put("/:id", userController.putUser);
-router.delete("/:id", userController.deleteUser);
+//Mostrar / crear usuarios
+routerUser.get("/", userController.getUsers);
+routerUser.post("/", userController.createUser);
 
-module.exports = router;
+//Editar / Borrar usuarios
+routerUser.put("/:id", validarToken, userController.putUser);
+routerUser.delete("/:id", validarToken, userController.deleteUser);
+
+//Favs
+
+routerUser.post("/favs", userController.postFavs);
+routerUser.delete("/:id/favs", userController.deleteFavs);
+//ruta put edite los favoritos
+
+module.exports = routerUser;

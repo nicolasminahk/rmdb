@@ -1,15 +1,18 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const mongoose = require("mongoose");
-const router = require("./routes/user");
+const router = require("./routes");
+const cookieParser = require("cookie-parser");
+require("dotenv").config();
 
 app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/users", router);
+app.use(cookieParser());
+app.use("/api", router);
 
 app.get("/", (req, res) => {
+  //---ACA APARECERIA EL POPULAR TOP MEDIA?
   res.send("Bienvenid@s a MondongoTV");
 });
 
@@ -20,7 +23,7 @@ mongoose
   )
   .then(() => {
     console.log("Conectado a la Api");
-    app.listen(port, () => {
+    app.listen(process.env.PORT, () => {
       console.log("Api RESTful Ok, y ejecutandose...");
     });
   })
