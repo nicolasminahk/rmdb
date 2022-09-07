@@ -3,18 +3,19 @@ import Cards from "../common/Cards";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { Box, Unstable_Grid2, Grid } from "@mui/material";
 
 //a card ke deberia pasar por prop cada pelicual?
 
-export const Grid = () => {
+export const Grilla = () => {
   const dispatch = useDispatch();
 
   const [movies, setmovies] = useState([]);
+
   useEffect(() => {
-    const data = axios
+    axios
       .get("/media/popular")
-      .then(({ data }) => console.log(data));
-    setmovies(data.results);
+      .then(({ data }) => setmovies(data.data.results));
   }, []);
 
   console.log(movies);
@@ -22,12 +23,12 @@ export const Grid = () => {
   //Ordenar cards
 
   return (
-    <div className="columns is-multiline layout">
-      <div className="column is-4">
-        {movies.map((movies) => (
-          <Cards movies={movies.results} />
-        ))}
-      </div>
-    </div>
+    <Grid container spacing={{ xs: 2 }} columnSpacing={4}>
+      {movies.map((movies, id) => (
+        <Grid item md={4}>
+          <Cards movies={movies} key={id} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };

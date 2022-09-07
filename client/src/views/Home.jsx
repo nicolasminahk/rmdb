@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import AppBar from "../components/AppBar";
-import { Grid } from "../components/Grid";
-// import { useDispatch, useSelector } from "react";
-// import axios from "axios";
-// import { getUser } from "../state/user";
+import { Grilla } from "../components/Grid";
+import Loggin from "../components/Loggin";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { getUser } from "../state/user";
 
 export const Home = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   axios.get("/auth/me").then(({ data }) => dispatch(getUser(data))); //---> Obtener Usuario
@@ -16,7 +17,8 @@ export const Home = () => {
     <>
       <div>Home</div>
       <AppBar />
-      <Grid />
+      {/* <Loggin /> */}
+      <Grilla />
     </>
   );
 };

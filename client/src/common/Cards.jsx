@@ -40,12 +40,17 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({ movies }) {
+export default function RecipeReviewCard({ movies, key }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const description =
+    movies.overview.length >= 110
+      ? movies.overview.substring(0, 110) + "..."
+      : movies.overview;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -60,18 +65,23 @@ export default function RecipeReviewCard({ movies }) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Aquí irían las Pelis"
-        subheader="si supiera como..."
+        title={movies.title}
+        subheader={movies.release_date}
       />
       <CardMedia
         component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        image={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
+        alt=""
+        sx={{
+          objectFit: "fill",
+          height: "21rem",
+          width: "80%",
+          margin: "auto",
+        }}
       />
-      <CardContent>
+      <CardContent sx={{ height: "50px" }}>
         <Typography variant="body2" color="text.secondary">
-          {movies.descrition}
+          {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
