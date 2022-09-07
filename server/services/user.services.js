@@ -66,15 +66,14 @@ class userServices {
       return { data: error, error: true };
     }
   }
-  static async postFavs(body) {
+  static async postFavs(body, _id) {
     try {
-      console.log(body);
+      console.log("Body", body);
+      console.log("Id User", _id);
       return await Usuario.updateOne(
-        { _id: user_id },
+        { _id: _id },
         {
-          $favorites: {
-            $addToSet: { _id: movies.id }, //--->Como comparo con el movie id?
-          },
+          $addToSet: { favorites: body.movies }, //--->Como comparo con el movie id?
         },
         { new: true }
       );

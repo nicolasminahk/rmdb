@@ -52,7 +52,12 @@ class userController {
     return res.status(400).send("No se pudo borrar");
   }
   static async postFavs(req, res, next) {
-    const post = await userServices.postFavs(req.body.favorites);
+    // console.log(req.body);
+    const _id = req.params;
+    // console.log(id);
+    const post = await userServices.postFavs(req.body, _id); //---El id de user  llegaría por paraámetro?
+    if (!post) return res.json({ data: "No se puedo agregar", error: true });
+    return res.json({ data: post, error: false });
   }
 
   static async deleteFavs(req, res, next) {

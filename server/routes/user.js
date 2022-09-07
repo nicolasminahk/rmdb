@@ -1,7 +1,7 @@
 const express = require("express");
 const routerUser = express.Router();
 const userController = require("../controllers/user.controller");
-const validarToken = require("../middlewares/authToken");
+const { validateAuth } = require("../middlewares/authToken");
 
 const app = express();
 
@@ -10,12 +10,12 @@ routerUser.get("/", userController.getUsers);
 routerUser.post("/", userController.createUser);
 
 //Editar / Borrar usuarios
-routerUser.put("/:id", validarToken, userController.putUser);
-routerUser.delete("/:id", validarToken, userController.deleteUser);
+routerUser.put("/:id", validateAuth, userController.putUser);
+routerUser.delete("/:id", validateAuth, userController.deleteUser);
 
 //Favs
 
-routerUser.post("/favs", userController.postFavs);
+routerUser.post("/:id/favs", userController.postFavs);
 routerUser.delete("/:id/favs", userController.deleteFavs);
 //ruta put edite los favoritos
 

@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { Home } from "./views/Home";
 
-function App() {
+const App = () => {
+  // HACER PEDIDOS AL BACK, QUE AL CAMBIAR LOS ESTADOS DEL RENDER MUESTE NUEVA INFORMACIÓN
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Home />
+    </>
   );
-}
+};
 
+//Hedear - modal
 export default App;
