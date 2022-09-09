@@ -4,20 +4,18 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect } from "react";
 
-// export const loginUser = createAction("LOGIN_USER");
 export const getUser = createAction("GET_USER");
 
 export const loginUser = createAsyncThunk(
   "LOGIN",
   async ({ email, password }) => {
-    console.log(email, password);
-    const result = await axios.post("/loggin", {
-      email: email,
-      password: password,
-    });
-    return result;
+    return (
+      await axios.post("/loggin", {
+        email,
+        password,
+      })
+    ).data;
   }
 );
 // useEffect(()=>{    //---> navigate(/)
@@ -27,7 +25,7 @@ export const loginUser = createAsyncThunk(
 const userReducer = createReducer(
   {},
   {
-    [loginUser]: (state, action) => action.payload,
+    [loginUser.fulfilled]: (state, action) => action.payload,
     [getUser]: (state, action) => action.payload,
   }
 );

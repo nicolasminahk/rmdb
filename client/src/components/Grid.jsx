@@ -11,9 +11,7 @@ export const Grilla = () => {
   const [movies, setmovies] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/media/popular")
-      .then(({ data }) => setmovies(data.data.results));
+    axios.get("/media/popular").then(({ data }) => setmovies(data.data));
   }, []);
 
   console.log(movies);

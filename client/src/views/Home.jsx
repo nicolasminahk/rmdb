@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import AppBar from "../components/AppBar";
+
 import { Grilla } from "../components/Grid";
 
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { getUser } from "../state/user";
+import Navbar from "../components/Navbar";
 
 export const Home = () => {
   // const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const Home = () => {
 
   return (
     <>
-      <AppBar />
+      <Navbar />
       <Grilla />
     </>
   );

@@ -52,8 +52,8 @@ export default function RecipeReviewCard({ movies, key }) {
       ? movies.overview.substring(0, 110) + "..."
       : movies.overview;
   const title =
-    movies.title.length >= 24
-      ? movies.title.substring(0, 24) + "..."
+    movies.title.length >= 20
+      ? movies.title.substring(0, 20) + "..."
       : movies.title;
 
   return (

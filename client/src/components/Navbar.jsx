@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Home } from "../views/Home";
@@ -15,10 +15,11 @@ import { Home } from "../views/Home";
 //-------LINK TO LOGGIN---------
 // const user = useSelector((state) => state.user);
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   console.log(user);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "black" }}>
@@ -36,10 +37,13 @@ export default function ButtonAppBar() {
             Kinetoscopio
           </Typography>
           {!user.email && (
-            <Button color="inherit" onClick={<Link to={<Home></Home>}></Link>}>
+            <Button color="inherit">
+              {/* <Navigate to="/loggin" replace state={{ from: "Loggin" }} /> */}
               Login
             </Button>
           )}
+
+          <Typography variant="h6">{user.email}</Typography>
         </Toolbar>
       </AppBar>
     </Box>

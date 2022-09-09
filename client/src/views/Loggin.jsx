@@ -13,18 +13,22 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import { loginUser } from "../state/user";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [form, setForm] = React.useState({ email: "", password: "" });
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("form", form);
-    dispatch(loginUser({ email: form.email, password: form.password }));
+    dispatch(loginUser({ email: form.email, password: form.password })).then(
+      () => {
+        navigate("/");
+      }
+    );
   };
 
   return (
