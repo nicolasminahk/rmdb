@@ -20,11 +20,7 @@ class authServices {
         { expiresIn: "7d" }
       );
       return {
-        data: {
-          _id: user.id,
-          nombre: user.nombre,
-          email: user.email,
-        },
+        data: user,
         error: false,
         jwToken,
       };

@@ -51,22 +51,18 @@ export default function RecipeReviewCard({ movies, key }) {
     movies.overview.length >= 110
       ? movies.overview.substring(0, 110) + "..."
       : movies.overview;
+  const title =
+    movies.title.length >= 24
+      ? movies.title.substring(0, 24) + "..."
+      : movies.title;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={movies.title}
-        subheader={movies.release_date}
+        sx={{ textAlign: "center", textAlignLast: "fill" }}
+        action={<IconButton aria-label="settings"></IconButton>}
+        title={title}
+        // subheader={movies.release_date}
       />
       <CardMedia
         component="img"

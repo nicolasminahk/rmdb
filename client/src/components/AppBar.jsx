@@ -6,13 +6,22 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Home } from "../views/Home";
 
+//-------LINK TO LOGGIN---------
 // const user = useSelector((state) => state.user);
 
 export default function ButtonAppBar() {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ bgcolor: "black" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -24,9 +33,13 @@ export default function ButtonAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MondongoTv
+            Kinetoscopio
           </Typography>
-          <Button color="inherit">Login</Button>
+          {!user.email && (
+            <Button color="inherit" onClick={<Link to={<Home></Home>}></Link>}>
+              Login
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
