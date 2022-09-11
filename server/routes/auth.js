@@ -11,6 +11,9 @@ routeAuth.get("/me", validateAuth, (req, res) => {
   res.send(req.user);
 });
 
+//Delete cookie
+routeAuth.get("/logout", authController.logout);
+
 //ruta singUp ---> registrarse y logearse.
 
 module.exports = routeAuth;

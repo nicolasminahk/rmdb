@@ -32,6 +32,11 @@ export default function SignIn() {
   };
 
   return (
+    // <div
+    //   style={{
+    //     backgroundImage: `url("https://via.placeholder.com/500")`,
+    //   }}
+    // >
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -109,5 +114,6 @@ export default function SignIn() {
         </Box>
       </Box>
     </Container>
+    // </div>
   );
 }

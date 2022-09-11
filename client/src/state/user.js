@@ -6,6 +6,7 @@ import {
 import axios from "axios";
 
 export const getUser = createAction("GET_USER");
+export const logoutUser = createAction("LOGOUT_USER");
 
 export const loginUser = createAsyncThunk(
   "LOGIN",
@@ -18,15 +19,13 @@ export const loginUser = createAsyncThunk(
     ).data;
   }
 );
-// useEffect(()=>{    //---> navigate(/)
-// if()
-// },[])
 
 const userReducer = createReducer(
   {},
   {
     [loginUser.fulfilled]: (state, action) => action.payload,
     [getUser]: (state, action) => action.payload,
+    [logoutUser]: (state, action) => action.payload,
   }
 );
 

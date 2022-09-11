@@ -6,17 +6,15 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { getUser } from "../state/user";
 import Navbar from "../components/Navbar";
+import { Carrucel } from "../components/Carrucel";
+import { Busqueda } from "../components/Busqueda";
 
 export const Home = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   axios.get("/auth/me").then(({ data }) => dispatch(getUser(data))); //---> Obtener Usuario
-  // }, [dispatch]);
-
   return (
     <>
       <Navbar />
+      <Carrucel />
+      <Busqueda />
       <Grilla />
     </>
   );

@@ -1,3 +1,4 @@
+const Usuario = require("../models/user");
 const authServices = require("../services/auth.services");
 
 class authController {
@@ -7,6 +8,7 @@ class authController {
     const { data, error } = await authServices.login(email, password);
     if (!error) {
       req.user = data;
+      console.log(data.token);
       res.cookie("token", data.token);
       return res.status(200).json(data);
     }
@@ -14,6 +16,11 @@ class authController {
       data: data,
       error: true,
     });
+  }
+
+  static async logout(req, res, next) {
+    res.clearCookie("token");
+    res.end();
   }
 }
 

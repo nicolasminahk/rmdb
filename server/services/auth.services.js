@@ -19,10 +19,10 @@ class authServices {
         "secret",
         { expiresIn: "7d" }
       );
+
       return {
-        data: user,
+        data: { user, token: jwToken },
         error: false,
-        jwToken,
       };
     } catch (err) {
       return { data: err, error: true };

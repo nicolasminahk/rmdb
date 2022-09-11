@@ -1,17 +1,3 @@
-// import React from "react";
-
-// // const [albums, setAlbums] = useState([]);
-// axios
-//   .get("/movies/")
-//   .then((res) => res.data)
-//   .then((albums) => setAlbums(albums.items));
-
-// {albums.map((album, i) => (
-//     <div className="column is-4" key={i}>
-//       <Card album={album} />
-//     </div>
-// ))}
-
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
@@ -28,6 +14,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -41,6 +29,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeReviewCard({ movies, key }) {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -52,17 +41,17 @@ export default function RecipeReviewCard({ movies, key }) {
       ? movies.overview.substring(0, 110) + "..."
       : movies.overview;
   const title =
-    movies.title.length >= 20
-      ? movies.title.substring(0, 20) + "..."
+    movies.title.length > 15
+      ? movies.title.substring(0, 15) + "..."
       : movies.title;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 330, margin: "5vh" }}>
       <CardHeader
-        sx={{ textAlign: "center", textAlignLast: "fill" }}
+        sx={{ textAlign: "center", textAlignLast: "fill", fontSize: "x-smal" }}
         action={<IconButton aria-label="settings"></IconButton>}
-        title={title}
-        // subheader={movies.release_date}
+        // title={title}
+        subheader={title}
       />
       <CardMedia
         component="img"
@@ -74,19 +63,19 @@ export default function RecipeReviewCard({ movies, key }) {
           width: "80%",
           margin: "auto",
         }}
+        onClick={() => navigate(`movies/${movies.id}`)}
       />
-      <CardContent sx={{ height: "50px" }}>
+
+      {/* <CardContent sx={{ height: "50px" }}>
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
-      </CardContent>
+      </CardContent> */}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+
         <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
@@ -98,7 +87,7 @@ export default function RecipeReviewCard({ movies, key }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography></Typography>
+          <Typography>{movies.overview}</Typography>
         </CardContent>
       </Collapse>
     </Card>
