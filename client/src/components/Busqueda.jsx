@@ -52,20 +52,19 @@ export const Busqueda = () => {
         onChange={handleChange}
       />
       {
-        (onchange = { handleChange } && ( // Como hago que los resultados solo se muestren al escribir?
-          <>
-            <Button className="btn btn-success">
-              <SearchIcon> </SearchIcon>
-            </Button>
-            <Grid container rowSpacing={4}>
-              {movies.map((movies, id) => (
-                <Grid item md={4}>
-                  <Cards movies={movies} key={id} />
-                </Grid>
-              ))}
-            </Grid>
-          </>
-        ))
+        // Como hago que los resultados solo se muestren al escribir?
+        <>
+          <Button className="btn btn-success">
+            <SearchIcon> </SearchIcon>
+          </Button>
+          <Grid container rowSpacing={4}>
+            {movies.map((movies, id) => (
+              <Grid item md={4}>
+                <Cards movies={movies} key={id} />
+              </Grid>
+            ))}
+          </Grid>
+        </>
       }
     </div>
   );

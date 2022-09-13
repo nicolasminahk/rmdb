@@ -52,16 +52,23 @@ class userController {
     return res.status(400).send("No se pudo borrar");
   }
   static async postFavs(req, res, next) {
-    // console.log(req.body);
-    const _id = req.params;
-    // console.log(id);
-    const post = await userServices.postFavs(req.body, _id); //---El id de user  llegaría por paraámetro?
-    if (!post) return res.json({ data: "No se puedo agregar", error: true });
-    return res.json({ data: post, error: false });
+    const movie = req.body.movie;
+    const id = req.params.id;
+    const { data, error } = await userServices.postFavs(movie, id); //---El id de user  llegaría por paraámetro?
+    // if (!post) return res.json({ data: "No se puedo agregar", error: true });
+    // return res.json({ data: post, error: false });
+    if (error) return res.status(400).send(data);
+    return res.status(200).send(data);
   }
 
   static async deleteFavs(req, res, next) {
-    const borrar = await userServices.deleteFavs();
+    const movie = req.body.movie;
+    const id = req.params.id;
+    const { data, error } = await userServices.deleteFavs(movie, id); //---El id de user  llegaría por paraámetro?
+    // if (!post) return res.json({ data: "No se puedo agregar", error: true });
+    // return res.json({ data: post, error: false });
+    if (error) return res.status(400).send(data);
+    return res.status(200).send(data);
   }
 }
 

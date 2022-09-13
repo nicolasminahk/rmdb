@@ -54,20 +54,16 @@ export default function Navbar() {
           </Typography>
 
           {!user.email && (
-            <IconButton>
-              <LoginIcon color="white" onClick={handleLog}>
-                <Typography>Login</Typography>
-              </LoginIcon>
-            </IconButton>
+            <LoginIcon color="white" onClick={handleLog}>
+              <Typography>Login</Typography>
+            </LoginIcon>
           )}
           {user.email && (
-            <IconButton>
-              <LogoutIcon color="white" onClick={handleLogout} position="fixed">
-                <Typography>Logout</Typography>
-              </LogoutIcon>
-            </IconButton>
+            <LogoutIcon color="white" onClick={handleLogout} position="fixed">
+              <Typography>Logout</Typography>
+            </LogoutIcon>
           )}
-          <AccountCircleIcon>
+          <AccountCircleIcon onClick={() => navigate("/users")}>
             <Typography variant="x-small">{user.email}</Typography>
           </AccountCircleIcon>
         </Toolbar>

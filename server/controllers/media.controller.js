@@ -16,7 +16,14 @@ class MediaController {
   static async getOneMovie(req, res, next) {
     const id = req.params.id;
     const { data, error } = await MediaServices.getOneMovie(id);
-    console.log("back data", data);
+
+    if (!error) return res.status(200).send({ data, error });
+    return res.status(400).send(data);
+  }
+  static async getOneVideo(req, res, next) {
+    const id = req.params.id;
+    const { data, error } = await MediaServices.getOneVideo(id);
+
     if (!error) return res.status(200).send({ data, error });
     return res.status(400).send(data);
   }

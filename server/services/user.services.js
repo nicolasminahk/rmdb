@@ -25,7 +25,6 @@ class userServices {
           password: bcrypt.hashSync(body.password, 10),
         });
         const resultado = await usuario.save();
-        console.log(resultado);
         return { data: resultado, error: false };
       }
     } catch (err) {
@@ -66,23 +65,48 @@ class userServices {
       return { data: error, error: true };
     }
   }
-  static async postFavs(body, _id) {
+  static async postFavs(movie, id) {
+    console.log({ movie, id });
     try {
-      console.log("Body", body);
-      console.log("Id User", _id);
-      return await Usuario.updateOne(
-        { _id: _id },
+      const results = await Usuario.findByIdAndUpdate(
+        id,
         {
-          $addToSet: { favorites: body.movies }, //--->Como comparo con el movie id?
+          $addToSet: {
+            favorites: movie,
+          },
         },
         { new: true }
       );
+      console.log(results);
+      if (!results) return { data: "No existe el usuario", error: true };
+      return { data: results, error: false };
     } catch (error) {
       return { data: error, error: true };
     }
   }
 
-  static async deleteFavs() {}
+  static async deleteFavs(movie, id) {
+    try {
+      const results = await Usuario.findByIdAndUpdate(
+        id,
+        {
+          $pull: {
+            favorites: {
+              id: movie.id,
+            },
+          },
+        },
+        { new: true }
+      );
+      console.log(results);
+      if (!results) return { data: "No existe el usuario", error: true };
+      return { data: results, error: false };
+    } catch (error) {
+      return { data: error, error: true };
+    }
+  }
+
+  //Metodo pull- envez de $addtoSet $pull
 
   //push al arreglo, cuando el _id de la pelicula
   //no esta en el arreglo, lo sumo

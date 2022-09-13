@@ -12,9 +12,8 @@ export const Carrucel = () => {
 
   useEffect(() => {
     axios.get("/media/top").then(({ data }) => setmovies(data.data.results));
+    console.log(movies);
   }, []);
-
-  console.log(movies);
 
   const settings = {
     dots: false,
@@ -30,11 +29,15 @@ export const Carrucel = () => {
     <Box sx={{ minHeight: "0px", minWidth: "0px" }}>
       <div>
         <h2>Pause On Hover</h2>
-        <Slider {...settings}>
-          {movies.map((movies, id) => (
-            <Cards movies={movies} key={id} />
-          ))}
-        </Slider>
+        {movies.length && (
+          <>
+            <Slider {...settings}>
+              {movies.map((movies, id) => (
+                <Cards movies={movies} key={id} />
+              ))}
+            </Slider>
+          </>
+        )}
       </div>
     </Box>
   );

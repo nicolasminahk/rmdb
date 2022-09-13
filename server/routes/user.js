@@ -15,8 +15,8 @@ routerUser.delete("/:id", validateAuth, userController.deleteUser);
 
 //Favs
 
-routerUser.post("/:id/favs", userController.postFavs);
-routerUser.delete("/:id/favs", userController.deleteFavs);
+routerUser.put("/:id/addFavs", userController.postFavs);
+routerUser.put("/:id/deleteFavs", userController.deleteFavs);
 //ruta put edite los favoritos
 
 module.exports = routerUser;

@@ -16,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     axios.get("/loggin/me").then(({ data }) => dispatch(getUser(data))); //---> Obtener Usuario
-  }, [dispatch]);
+  }, []);
 
   //Router Dom
   return (
@@ -26,10 +26,9 @@ const App = () => {
         {/* <Route path="/404"  /> */}
         <Route path="/" element={<Home />} />
         <Route path="/loggin" element={<Loggin />} />
-        {/* <Route path="/pelicula" element={<Pelicula />} /> */}
-        <Route path="/me" element={<Usuario />} />
+        <Route path="/users" element={<Usuario />} />
         {/* <Route path="/users" /> */}
-        <Route path="/movies/:id" element={<Pelicula />} />
+        <Route path="/movie/:id" element={<Pelicula />} />
       </Routes>
     </>
   );

@@ -13,8 +13,6 @@ class authServices {
       const jwToken = jwt.sign(
         {
           _id: user.id,
-          nombre: user.nombre,
-          email: user.email,
         },
         "secret",
         { expiresIn: "7d" }

@@ -16,6 +16,8 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { addFav } from "../state/user";
+import { useDispatch, useSelector } from "react-redux";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,6 +32,9 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard({ movies, key }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -63,7 +68,7 @@ export default function RecipeReviewCard({ movies, key }) {
           width: "80%",
           margin: "auto",
         }}
-        onClick={() => navigate(`movies/${movies.id}`)}
+        onClick={() => navigate(`movie/${movies.id}`)}
       />
 
       {/* <CardContent sx={{ height: "50px" }}>
@@ -73,7 +78,11 @@ export default function RecipeReviewCard({ movies, key }) {
       </CardContent> */}
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
+          <FavoriteIcon
+            onClick={() => {
+              dispatch(addFav(movies));
+            }}
+          />
         </IconButton>
 
         <ExpandMore

@@ -50,11 +50,20 @@ class MediaServices {
   static async getOneMovie(id) {
     try {
       const result = await axios.get(
-        ` ${process.env.TMDB_BASE_URL}movie/${id}?api_key=${process.env.TMDB_KEY}&language=en-US `
-
-        // `${process.env.TMDB_BASE_URL}find/${id}?api_key=${process.env.TMDB_KEY}&language=en-US&external_source=imdb_id`
+        `${process.env.TMDB_BASE_URL}/movie/${id}?api_key=${process.env.TMDB_KEY}&language=en-US`
       );
-      console.log("Back", result.data);
+
+      if (result.data) return { data: result.data, error: false };
+      return { data: result.data, error: false };
+    } catch (err) {
+      return { data: err, error: true };
+    }
+  }
+  static async getOneVideo(id) {
+    try {
+      const result = await axios.get(
+        `${process.env.TMDB_BASE_URL}/movie/${id}/videos?api_key=${process.env.TMDB_KEY}&language=en-US`
+      );
       if (result.data) return { data: result.data, error: false };
       return { data: result.data, error: false };
     } catch (err) {

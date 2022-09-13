@@ -22,6 +22,10 @@ class authController {
     res.clearCookie("token");
     res.end();
   }
+  static async me(req, res) {
+    const user = await Usuario.findById(req.user._id);
+    return res.send(user);
+  }
 }
 
 module.exports = authController;
