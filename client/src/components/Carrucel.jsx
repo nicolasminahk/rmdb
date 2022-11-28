@@ -11,7 +11,7 @@ export const Carrucel = () => {
   const [movies, setmovies] = useState([]);
 
   useEffect(() => {
-    axios.get("/media/top").then(({ data }) => setmovies(data.data.results));
+    axios.get("/media/top").then(({ data }) => console.log(data.data.results));
     console.log(movies);
   }, []);
 
