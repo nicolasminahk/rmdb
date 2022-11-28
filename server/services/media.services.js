@@ -41,7 +41,7 @@ class MediaServices {
       const result = await axios.get(
         `${process.env.TMDB_BASE_URL}/movie/top_rated?api_key=${process.env.TMDB_KEY}&language=en-US&page=2`
       );
-
+      console.log(result);
       if (result.data) return { data: result.data, error: false };
     } catch (error) {
       return { data: error, error: true };
